@@ -3,5 +3,10 @@
       "Latitude": "53.427",
       "Longitude": "-3.084",
       "RegionName": "ukwest"
+    },
+    {
+      "Latitude": "-37.8136",
+      "Longitude": "144.9631",
+      "RegionName": "australiasoutheast"
     }
 ]

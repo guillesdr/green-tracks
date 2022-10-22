@@ -8,6 +8,8 @@ import {
 import { csv } from "d3-fetch";
 import { scaleLinear } from "d3-scale";
 import sortBy from "lodash/sortBy";
+import regions from "../data/regions.json";
+import emissionsService from '../services/emissions.service'
 
 const geoUrl =
   "https://raw.githubusercontent.com/deldersveld/topojson/master/world-continents.json";
@@ -15,13 +17,30 @@ const geoUrl =
 const MapChart = () => {
   const [data, setData] = useState([]);
   const [maxValue, setMaxValue] = useState(0);
+  const [emissions, setEmissions] = useState ([]);
 
   useEffect(() => {
-    csv("/data.csv").then((cities) => {
-      const sortedCities = sortBy(cities, (o) => -o.population);
-      setMaxValue(sortedCities[0].population);
+            regions.forEach(region => {
+                emissionsService.getEmissionByLocation(region.RegionName).then((data) => {
+                    console.log("🚀 ~ file: TableData.js ~ line 12 ~ emissionsService.getEmissionByLocation ~ data", data.data)
+                    let  apiData = data.data[0];
+                    apiData.regionName = region.RegionName
+                    apiData.latitude = region.Latitude
+                    apiData.longitude = region.Longitude
+
+                    setEmissions((emis => [...emis,apiData])
+                    );
+                  })
+            })
+
+
+    
+    //csv("/data.csv").then((cities) => {
+      const sortedCities = sortBy(emissions, (o) => -o.rating);
+      //setMaxValue(sortedCities[0].rating);
       setData(sortedCities);
-    });
+    //});
+    
   }, []);
 
   const popScale = useMemo(
@@ -38,10 +57,10 @@ const MapChart = () => {
           ))
         }
       </Geographies>
-      {data.map(({ city_code, lng, lat, population }) => {
+      {data.map(({ region, longitude, latitude, rating }) => {
         return (
-          <Marker key={city_code} coordinates={[lng, lat]}>
-            <circle fill="#F53" stroke="#FFF" r={popScale(population)} />
+          <Marker key={region} coordinates={[longitude, latitude]}>
+            <circle fill="#F53" stroke="#FFF" r={popScale(rating)} />
           </Marker>
         );
       })}

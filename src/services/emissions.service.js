@@ -20,10 +20,10 @@ class EmissionsByLocationsDataService {
       //  return response.data
         //response.data ? emissions.push(response.data) : console.log('a');  
 
-        return http.get("bylocation?location=" + region.RegionName)
+       
     })
 
-      ;
+    return http.get("bylocation?location=" + regions[0].RegionName)
 
     
 

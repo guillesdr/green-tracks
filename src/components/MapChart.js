@@ -25,22 +25,27 @@ const MapChart = () => {
                 emissionsService.getEmissionByLocation(region.RegionName).then((data) => {
                     console.log("🚀 ~ file: TableData.js ~ line 12 ~ emissionsService.getEmissionByLocation ~ data", data.data)
                     
-                    let  apiData = data.data[0];
-                    apiData.regionName = region.RegionName
-                    apiData.latitude = region.Latitude
-                    apiData.longitude = region.Longitude
-
-                    setEmissions((emis => [...emis,apiData])
-                    );
-
-                    const sortedCities = sortBy(emissions, (o) => -o.rating);
-                    setData(sortedCities);
+                      let  apiData = data.data[0];
+                      apiData.regionName = region.RegionName
+                      apiData.latitude = region.Latitude
+                      apiData.longitude = region.Longitude
+  
+                      setEmissions((emis => [...emis,apiData])
+                      );
+  
+                      const sortedCities = sortBy(emissions, (o) => -o.rating);
+                      setData(sortedCities);
                   })
-            })
-
-
-    
+            })  
   }, []);
+
+
+  useEffect(() => {
+    const sortedCities = sortBy(emissions, (o) => -o.rating);
+    setData(sortedCities);
+
+  }, [emissions]);
+
 
   const popScale = useMemo(
     () => scaleLinear().domain([0, maxValue]).range([0, 24]),

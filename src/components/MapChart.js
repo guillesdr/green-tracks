@@ -18,11 +18,13 @@ const MapChart = () => {
   const [data, setData] = useState([]);
   const [maxValue, setMaxValue] = useState(0);
   const [emissions, setEmissions] = useState ([]);
+  const markerOffset = 20;
 
   useEffect(() => {
             regions.forEach(region => {
                 emissionsService.getEmissionByLocation(region.RegionName).then((data) => {
                     console.log("🚀 ~ file: TableData.js ~ line 12 ~ emissionsService.getEmissionByLocation ~ data", data.data)
+                    
                     let  apiData = data.data[0];
                     apiData.regionName = region.RegionName
                     apiData.latitude = region.Latitude
@@ -30,16 +32,13 @@ const MapChart = () => {
 
                     setEmissions((emis => [...emis,apiData])
                     );
+
+                    const sortedCities = sortBy(emissions, (o) => -o.rating);
+                    setData(sortedCities);
                   })
             })
 
 
-    
-    //csv("/data.csv").then((cities) => {
-      const sortedCities = sortBy(emissions, (o) => -o.rating);
-      //setMaxValue(sortedCities[0].rating);
-      setData(sortedCities);
-    //});
     
   }, []);
 
@@ -57,10 +56,17 @@ const MapChart = () => {
           ))
         }
       </Geographies>
-      {data.map(({ region, longitude, latitude, rating }) => {
+      {data.map(({ location, region, regionName, longitude, latitude, rating }) => {
         return (
           <Marker key={region} coordinates={[longitude, latitude]}>
             <circle fill="#F53" stroke="#FFF" r={popScale(rating)} />
+            <text
+            textAnchor="middle"
+            y={markerOffset}
+            style={{ fontFamily: "system-ui", fill: "#5D5A6D" }}
+          >
+            {regionName}
+          </text>
           </Marker>
         );
       })}

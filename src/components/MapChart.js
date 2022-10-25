@@ -18,6 +18,7 @@ const MapChart = () => {
   const [data, setData] = useState([]);
   const [maxValue, setMaxValue] = useState(0);
   const [emissions, setEmissions] = useState ([]);
+  const [rating, setRating] = useState ([]);
   const markerOffset = 20;
 
   useEffect(() => {
@@ -30,11 +31,13 @@ const MapChart = () => {
                       apiData.latitude = region.Latitude
                       apiData.longitude = region.Longitude
   
-                      setEmissions((emis => [...emis,apiData])
-                      );
+                      setEmissions((emis => [...emis,apiData]));
+                      setRating((rat => [...rat, apiData.rating]));
+                      
   
                       const sortedCities = sortBy(emissions, (o) => -o.rating);
                       setData(sortedCities);
+
                   })
             })  
   }, []);

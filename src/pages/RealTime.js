@@ -6,6 +6,7 @@ import TableData from '../components/TableData'
 const realTime = () => {
     return (
         <>
+            <h3>RealTime</h3>
             <div class="flex items-center justify-center w-8/12">
                 <MapChart  />
             </div>

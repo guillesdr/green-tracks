@@ -12,9 +12,10 @@ const TableData =  () => {
             regions.forEach(region => {
                 emissionsService.getEmissionByLocation(region.RegionName).then((data) => {
                     console.log("🚀 ~ file: TableData.js ~ line 12 ~ emissionsService.getEmissionByLocation ~ data", data.data)
-                    
+                    if (data.status==200){
                     setEmissions((emis => [...emis, data.data[0]])
                     );
+                }
                   })
             })
           }, []);    

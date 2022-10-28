@@ -31,12 +31,15 @@ const MapChart = () => {
                       apiData.latitude = region.Latitude
                       apiData.longitude = region.Longitude
   
-                      setEmissions((emis => [...emis,apiData]));
-                      setRating((rat => [...rat, apiData.rating]));
-                      
-  
-                      const sortedCities = sortBy(emissions, (o) => -o.rating);
-                      setData(sortedCities);
+                      if (data.status==200){
+                        setEmissions((emis => [...emis,apiData]));
+                        setRating((rat => [...rat, apiData.rating]));
+                        
+    
+                        const sortedCities = sortBy(emissions, (o) => -o.rating);
+                        setData(sortedCities);
+                      }
+
 
                   })
             })  

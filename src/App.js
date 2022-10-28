@@ -3,8 +3,6 @@ import './App.css';
 import React, { Component } from 'react';
 import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
 import Header from './components/Header'
-import MapChart from './components/MapChart';
-import TableData from './components/TableData';
 import Menu from './components/Menu';
 import RealTime from './pages/RealTime';
 import Today from './pages/Today';

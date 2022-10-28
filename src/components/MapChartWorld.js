@@ -14,7 +14,7 @@ import emissionsService from '../services/emissions.service'
 const geoUrl =
   "https://raw.githubusercontent.com/deldersveld/topojson/master/world-continents.json";
 
-const MapChart = ({emissionData}) => {
+const MapChartWorld = ({emissionData}) => {
   const [data, setData] = useState([]);
   const [maxValue, setMaxValue] = useState(0);
   const [emissions, setEmissions] = useState ([]);
@@ -72,4 +72,4 @@ const MapChart = ({emissionData}) => {
   );
 };
 
-export default MapChart;
+export default MapChartWorld;

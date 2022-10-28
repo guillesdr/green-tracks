@@ -14,7 +14,7 @@ import emissionsService from '../services/emissions.service'
 const geoUrl =
   "https://raw.githubusercontent.com/deldersveld/topojson/master/world-continents.json";
 
-const MapChart = () => {
+const MapChart = ({emissionData}) => {
   const [data, setData] = useState([]);
   const [maxValue, setMaxValue] = useState(0);
   const [emissions, setEmissions] = useState ([]);
@@ -22,41 +22,28 @@ const MapChart = () => {
   const markerOffset = 20;
 
   useEffect(() => {
-            regions.forEach(region => {
-                emissionsService.getEmissionByLocation(region.RegionName).then((data) => {
-                    console.log("🚀 ~ file: TableData.js ~ line 12 ~ emissionsService.getEmissionByLocation ~ data", data.data)
-                    
-                      let  apiData = data.data[0];
-                      apiData.regionName = region.RegionName
-                      apiData.latitude = region.Latitude
-                      apiData.longitude = region.Longitude
-  
-                      if (data.status==200){
-                        setEmissions((emis => [...emis,apiData]));
-                        setRating((rat => [...rat, apiData.rating]));
+
+                        setEmissions(emissionData);
+                        //setRating((rat => [...rat, emissionData.rating]));
                         
-    
-                        const sortedCities = sortBy(emissions, (o) => -o.rating);
+                         const sortedCities = sortBy(emissions, (o) => -o.rating);
                         setData(sortedCities);
-                      }
+
+  }, [emissionData]);
 
 
-                  })
-            })  
-  }, []);
-
-
-  useEffect(() => {
+/*/  useEffect(() => {
     const sortedCities = sortBy(emissions, (o) => -o.rating);
     setData(sortedCities);
 
   }, [emissions]);
-
+*/
 
   const popScale = useMemo(
     () => scaleLinear().domain([0, maxValue]).range([0, 24]),
     [maxValue]
   );
+
 
   return (
     <ComposableMap projectionConfig={{ rotate: [-10, 0, 0] }}>

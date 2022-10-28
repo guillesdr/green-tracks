@@ -2,23 +2,13 @@ import React, { useState, useEffect } from 'react'
 import emissionsService from '../services/emissions.service'
 import regions from "../data/regions.json";
 
-const TableData =  () => {
+const TableData =  ({emissionData}) => {
 
     const [emissions, setEmissions] = useState ([]);
 
     useEffect(() => {
-            console.log('use effect')
-
-            regions.forEach(region => {
-                emissionsService.getEmissionByLocation(region.RegionName).then((data) => {
-                    console.log("🚀 ~ file: TableData.js ~ line 12 ~ emissionsService.getEmissionByLocation ~ data", data.data)
-                    if (data.status==200){
-                    setEmissions((emis => [...emis, data.data[0]])
-                    );
-                }
-                  })
-            })
-          }, []);    
+            setEmissions(emissionData)
+          }, [emissionData]);    
 
 
     return (

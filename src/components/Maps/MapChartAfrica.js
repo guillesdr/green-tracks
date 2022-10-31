@@ -5,16 +5,14 @@ import {
   Geography,
   Marker
 } from "react-simple-maps";
-import { csv } from "d3-fetch";
 import { scaleLinear } from "d3-scale";
 import sortBy from "lodash/sortBy";
-import regions from "../data/regions.json";
-import emissionsService from '../services/emissions.service'
+
 
 const geoUrl =
-  "https://raw.githubusercontent.com/deldersveld/topojson/master/continents/europe.json";
+  "https://raw.githubusercontent.com/deldersveld/topojson/master/continents/africa.json";
 
-const MapChartEurope = ({ emissionData }) => {
+const MapChartAfrica = ({ emissionData }) => {
   const [data, setData] = useState([]);
   const [maxValue, setMaxValue] = useState(0);
   const [emissions, setEmissions] = useState([]);
@@ -32,7 +30,7 @@ const MapChartEurope = ({ emissionData }) => {
      setData(sortedCities);
     
 
-  }, []);
+  }, [emissions]);
 
 
   /*/  useEffect(() => {
@@ -50,8 +48,7 @@ const MapChartEurope = ({ emissionData }) => {
 
   return (
     <ComposableMap projectionConfig={{
-      rotate: [-10.0, -53.0, 0],
-      scale: 800
+      scale: 1200
     }}>
       <Geographies geography={geoUrl}>
         {({ geographies }) =>
@@ -78,4 +75,4 @@ const MapChartEurope = ({ emissionData }) => {
   );
 };
 
-export default MapChartEurope;
+export default MapChartAfrica;

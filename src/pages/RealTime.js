@@ -1,11 +1,16 @@
 import React, { useState, useEffect } from 'react'
-import MapChartWorld from '../components/MapChartWorld'
-import MapChartEurope from '../components/MapChartEurope'
-import Menu from '../components/Menu'
+import MapChartWorld from '../components/Maps/MapChartWorld'
+import MapChartEurope from '../components/Maps/MapChartEurope'
 import TableData from '../components/TableData'
 import emissionsService from '../services/emissions.service'
 import regions from "../data/regions.json";
 import TitleDescriptions from '../components/TitleDescriptions'
+import MapChartOceania from '../components/Maps/MapChartOceania'
+import MapChartAfrica from '../components/Maps/MapChartAfrica'
+import MapChartAsia from '../components/Maps/MapChartAsia'
+import MapChartSouthAmerica from '../components/Maps/MapChartSouthAmerica'
+import MapChartNorthAmerica from '../components/Maps/MapChartNorthAmerica'
+
 
 const RealTime = () => {
 
@@ -54,7 +59,7 @@ const RealTime = () => {
             <button type="button" onClick={() => setMap('ASIA')}class="py-2 px-4 text-sm font-medium text-gray-900 bg-white rounded-r-md border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-blue-500 dark:focus:text-white">
                 Asia
             </button>   
-            <button type="button" onClick={() => setMap('AUSTRALIA')} class="py-2 px-4 text-sm font-medium text-gray-900 bg-white rounded-r-md border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-blue-500 dark:focus:text-white">
+            <button type="button" onClick={() => setMap('OCEANIA')} class="py-2 px-4 text-sm font-medium text-gray-900 bg-white rounded-r-md border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-blue-500 dark:focus:text-white">
                 Australia
             </button>  
             <button type="button" onClick={() => setMap('AFRICA')} class="py-2 px-4 text-sm font-medium text-gray-900 bg-white rounded-r-md border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-blue-500 dark:focus:text-white">
@@ -76,27 +81,27 @@ const RealTime = () => {
             </div>
             <div>     
                 {
-                    map==='NORTH_AMERICA' ? <MapChartEurope  emissionData={emissions}/> : <></>
+                    map==='NORTH_AMERICA' ? <MapChartNorthAmerica  emissionData={emissions}/> : <></>
                 } 
             </div>
             <div>     
                 {
-                    map==='SOUTH_AMERICA' ? <MapChartEurope  emissionData={emissions}/> : <></>
+                    map==='SOUTH_AMERICA' ? <MapChartSouthAmerica  emissionData={emissions}/> : <></>
                 } 
             </div>
             <div>     
                 {
-                    map==='ASIA' ? <MapChartEurope  emissionData={emissions}/> : <></>
+                    map==='ASIA' ? <MapChartAsia  emissionData={emissions}/> : <></>
                 } 
             </div>
             <div>     
                 {
-                    map==='AUSTRALIA' ? <MapChartEurope  emissionData={emissions}/> : <></>
+                    map==='OCEANIA' ? <MapChartOceania  emissionData={emissions}/> : <></>
                 } 
             </div>
             <div>     
                 {
-                    map==='AFRICA' ? <MapChartEurope  emissionData={emissions}/> : <></>
+                    map==='AFRICA' ? <MapChartAfrica  emissionData={emissions}/> : <></>
                 } 
             </div>            
 

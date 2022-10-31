@@ -5,11 +5,8 @@ import {
   Geography,
   Marker
 } from "react-simple-maps";
-import { csv } from "d3-fetch";
 import { scaleLinear } from "d3-scale";
 import sortBy from "lodash/sortBy";
-import regions from "../data/regions.json";
-import emissionsService from '../services/emissions.service'
 
 const geoUrl =
   "https://raw.githubusercontent.com/deldersveld/topojson/master/world-continents.json";
@@ -29,7 +26,7 @@ const MapChartWorld = ({emissionData}) => {
                          const sortedCities = sortBy(emissions, (o) => -o.rating);
                         setData(sortedCities);
 
-  }, [emissionData]);
+  }, [emissions]);
 
 
 /*/  useEffect(() => {
@@ -50,7 +47,8 @@ const MapChartWorld = ({emissionData}) => {
       <Geographies geography={geoUrl}>
         {({ geographies }) =>
           geographies.map((geo) => (
-            <Geography key={geo.rsmKey} geography={geo} fill="#DDD" />
+            <Geography key={geo.rsmKey} geography={geo}               fill="#EAEAEC"
+            stroke="#D6D6DA"/>
           ))
         }
       </Geographies>

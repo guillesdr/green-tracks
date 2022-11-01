@@ -48,10 +48,10 @@ const TableData =  ({emissionData}) => {
                                 {emi.time}
                             </td>
                             <td className="py-4 px-6">
-                                 {emi.rating}
+                                 {emi.rating.toFixed(2)}
                             </td>
                             <td className="py-4 px-6">
-                                <a href="#" className="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
+                                
                             </td>
                         </tr>
                                  ))}

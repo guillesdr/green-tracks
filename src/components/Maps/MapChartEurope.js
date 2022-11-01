@@ -48,7 +48,7 @@ const MapChartEurope = ({ emissionData }) => {
   return (
     <ComposableMap projectionConfig={{
       rotate: [-10.0, -52.0, 0],
-      scale: 800
+      scale: 650
     }}>
       <Geographies geography={geoUrl}>
         {({ geographies }) =>

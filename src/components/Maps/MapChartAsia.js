@@ -47,8 +47,8 @@ const MapChartAsia = ({ emissionData }) => {
 
   return (
     <ComposableMap projectionConfig={{
-      rotate: [-10.0, -53.0, 0],
-      scale: 800
+      rotate: [-90, -20, 0],
+      scale: 300
     }}>
       <Geographies geography={geoUrl}>
         {({ geographies }) =>

@@ -49,8 +49,8 @@ const MapChartNorthAmerica = ({ emissionData }) => {
     <ComposableMap 
     projection="geoAzimuthalEqualArea"
     projectionConfig={{
-     rotate: [-20 , 20, 0],
-     scale: 400
+      rotate: [100, -42.0, 0],
+     scale: 600
    }}
    >
       <Geographies geography={geoUrl}>

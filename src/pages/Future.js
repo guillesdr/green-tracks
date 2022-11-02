@@ -3,6 +3,7 @@ import TitleDescriptions from '../components/TitleDescriptions'
 import emissionsService from '../services/emissions.service'
 import regions from "../data/regions.json";
 import TableData from '../components/TableData';
+import MapChartWorld from '../components/Maps/MapChartWorld';
 
 const Future = () => {
 
@@ -78,6 +79,10 @@ const Future = () => {
                 
              
       </div>
+
+
+      <MapChartWorld emissionData={optimalForecast} />
+
 
       <div class="container mx-auto">
                 <TableData emissionData={optimalForecast} />

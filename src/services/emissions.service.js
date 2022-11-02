@@ -14,6 +14,11 @@ class EmissionsByLocationsDataService {
   getForecastEmissionByLocationAndTime = async (region, time1, time2, windowSize) => {
     return http.get(`/forecasts/current?location=${region}&dataStartAt=${time1}&dataEndAt=${time2}&windowSize=${windowSize}`)
   };
+
+  getEmissionByLocationAndTimeBest = async (region, time1, time2, windowSize) => {
+    return http.get(`/bylocations/best?location=${region}&dataStartAt=${time1}&dataEndAt=${time2}&windowSize=${windowSize}`)
+  };
+  
   
 }
 

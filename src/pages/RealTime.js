@@ -10,15 +10,20 @@ import MapChartAfrica from '../components/Maps/MapChartAfrica'
 import MapChartAsia from '../components/Maps/MapChartAsia'
 import MapChartSouthAmerica from '../components/Maps/MapChartSouthAmerica'
 import MapChartNorthAmerica from '../components/Maps/MapChartNorthAmerica'
+import BarChartGt from '../components/Charts/BarChart'
 
 
 const RealTime = () => {
 
     const [emissions, setEmissions] = useState([]);
     const [map, setMap] = useState('');
+    const [dataChart, setDataChart] = useState([]);
 
 
     useEffect(() => {
+
+        const dataChart =[]
+
         regions.forEach(region => {
             emissionsService.getEmissionByLocation(region.RegionName).then((data) => {
 
@@ -29,7 +34,12 @@ const RealTime = () => {
                     apiData.latitude = region.Latitude
                     apiData.longitude = region.Longitude
                     console.log(apiData.regionName)
+
+                    
+
                     setEmissions((emis => [...emis, apiData]));
+                    setDataChart((emis => [...emis, {name: apiData.regionName, value: apiData.rating}]));
+
                 }
                 
                 setMap('WORLD')
@@ -74,7 +84,8 @@ const RealTime = () => {
 
             <br/>
             <br/>
-            
+
+
             <div>
                 {
                     map === 'WORLD' ? <MapChartWorld emissionData={emissions} /> : <></>
@@ -110,6 +121,8 @@ const RealTime = () => {
                     map === 'AFRICA' ? <MapChartAfrica emissionData={emissions} /> : <></>
                 }
             </div>
+
+            <BarChartGt data = {dataChart} />
 
             <div class="container mx-auto">
                 <TableData emissionData={emissions} />

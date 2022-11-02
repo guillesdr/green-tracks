@@ -14,7 +14,6 @@ function App() {
     <>
       <BrowserRouter>
         <Header />
-        <Menu />
         <Routes>
           <Route path="/" element={<RealTime />} />
           <Route path="/realTime" element={<RealTime />} />

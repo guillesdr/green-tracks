@@ -34,7 +34,7 @@ const MapChartWorld = ({ emissionData }) => {
       setRatings(scores)
     }
 
-  }, [emissionData]);
+  }, [emissionData, emissions ]);
 
 
   /*/  useEffect(() => {

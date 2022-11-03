@@ -15,11 +15,12 @@ function App() {
       <BrowserRouter>
         <Header />
         <Routes>
-          <Route path="/" element={<RealTime />} />
-          <Route path="/realTime" element={<RealTime />} />
-          <Route path="/today" element={<Today />} />
-          <Route path="/future" element={<Future />} />
+            <Route path="/" element={<RealTime />} />
+            <Route path="/realTime" element={<RealTime />} />
+            <Route path="/today" element={<Today />} />
+            <Route path="/future" element={<Future />} />
         </Routes>
+
       </BrowserRouter>
     </>
 

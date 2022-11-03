@@ -53,7 +53,7 @@ const RealTime = () => {
 
 
     return (
-        <>
+        <div class="container mx-auto px-4">
             <TitleDescriptions title={'Real Time'} description={'Realtime Emissions in the world'} />
 
             <h4>Select:</h4>
@@ -128,7 +128,7 @@ const RealTime = () => {
                 <TableData emissionData={emissions} />
             </div>
 
-        </>
+        </div>
     )
 }
 

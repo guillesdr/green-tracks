@@ -64,7 +64,7 @@ const BarChartGt = ({data}) => {
         >
           <CartesianGrid strokeDasharray="3 3" />
           <XAxis dataKey="name">
-            <Label value="Pages of my website" offset={0} position="insideBottom" />
+            <Label value="Pages of my website" offset={-6} position="insideBottom" />
           </XAxis>
           <YAxis dataKey="value"/>
           <Tooltip />

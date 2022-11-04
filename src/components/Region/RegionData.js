@@ -1,4 +1,5 @@
 import React from 'react'
+import LogoGsf from '../../images/logoGSF.png';
 
 const RegionData = ({reg, emissions}) => {
 
@@ -11,7 +12,7 @@ const RegionData = ({reg, emissions}) => {
         
 <div class="w-full max-w-sm bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700">
     <div class="flex flex-col items-center pb-10">
-        
+        <img class="mb-3 w-24 h-24 rounded-full shadow-lg" src={LogoGsf} /> 
         <h5 class="mb-1 text-xl font-medium text-gray-900 dark:text-white"> {reg.RegionName}</h5>
         <span class="text-sm text-gray-500 dark:text-gray-400">{reg.location}</span>
 

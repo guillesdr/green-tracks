@@ -46,11 +46,17 @@ const MapChartNorthAmerica = ({ emissionData }) => {
 
 
   return (
+
+    <div class="p-4 w-2/3 bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700">
+
+    <h5 class="mb-2 text-2xl font-semibold tracking-tight text-gray-900 dark:text-white">North America Map</h5>
+
+
     <ComposableMap 
     projection="geoAzimuthalEqualArea"
     projectionConfig={{
       rotate: [100, -42.0, 0],
-     scale: 600
+     scale: 500
    }}
    >
       <Geographies geography={geoUrl}>
@@ -75,6 +81,8 @@ const MapChartNorthAmerica = ({ emissionData }) => {
         );
       })}
     </ComposableMap>
+
+    </div>
   );
 };
 

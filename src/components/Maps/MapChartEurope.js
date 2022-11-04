@@ -46,9 +46,15 @@ const MapChartEurope = ({ emissionData }) => {
 
 
   return (
+    <div class="p-4 w-2/3 bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700">
+
+    <h5 class="mb-2 text-2xl font-semibold tracking-tight text-gray-900 dark:text-white">North America Map</h5>
+
+
+
     <ComposableMap projectionConfig={{
-      rotate: [-10.0, -52.0, 0],
-      scale: 650
+        rotate: [-10, -52, 0],
+        scale: 720
     }}>
       <Geographies geography={geoUrl}>
         {({ geographies }) =>
@@ -73,6 +79,8 @@ const MapChartEurope = ({ emissionData }) => {
         );
       })}
     </ComposableMap>
+
+    </div>
   );
 };
 

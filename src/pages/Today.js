@@ -16,24 +16,24 @@ const Today = () => {
   }
 
 
-   
-function organizandoObjeto(arr){
- 
-  let memory={
-      temp   : [],
-      result : []
+
+  function organizandoObjeto(arr) {
+
+    let memory = {
+      temp: [],
+      result: []
+    }
+
+    arr.map(o => {
+
+      if (!memory.temp.includes(o.regionName)) {
+        memory.temp.push(o.regionName)
+        const tel = emissions.filter(t => t.regionName === o.regionName)
+        memory.result.push({ regionName: o.regionName, emiss: tel })
+      }
+    })
+    return memory.result
   }
-
-  arr.map( o=> {
-
-          if(!memory.temp.includes(o.regionName)){
-                  memory.temp.push(o.regionName)
-                  const tel  = emissions.filter( t => t.regionName === o.regionName)
-                  memory.result.push({ regionName : o.regionName, emiss: tel })    
-          }
-  })
-   return memory.result
-}
 
 
   useEffect(() => {
@@ -71,19 +71,22 @@ function organizandoObjeto(arr){
 
   return (
     <>
-      <TitleDescriptions title={'Today'} description={'Ranking of best emission data'} />
 
-<div class="grid grid-cols-4 gap-4">
+      <div class="container mx-auto px-4">
+        <TitleDescriptions title={'Today'} description={'Ranking of best emission data'} />
+
+        <div class="grid grid-cols-4 gap-4">
 
 
 
-      {regions.map((reg) => (
-        <div>
-        <RegionData reg={reg} emissions={emissions}/>
+          {regions.map((reg) => (
+            <div>
+              <RegionData reg={reg} emissions={emissions} />
+            </div>
+          ))}
+
         </div>
-      ))}
-
-</div>
+      </div>
     </>
   )
 }

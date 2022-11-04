@@ -52,7 +52,7 @@ const TodayChart = () => {
     <>
 
         <LineChart
-          width={800}
+          width={400}
           height={400}
           data={data}
           margin={{

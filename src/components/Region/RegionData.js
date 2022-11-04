@@ -3,8 +3,6 @@ import LogoGsf from '../../images/logoGSF.png';
 
 const RegionData = ({reg, emissions}) => {
 
-
-
     const regEmissions  = emissions.filter( t => t.regionName === reg.RegionName)
 
   return (

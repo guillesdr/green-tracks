@@ -47,12 +47,11 @@ const data = [
     },
   ];
 
-const TodayChart = () => {
+const TodayChart = ({regionName, dataType, time1, time2}) => {
   return (
-    <>
-
+    <>       
         <LineChart
-          width={400}
+          width={800}
           height={400}
           data={data}
           margin={{

@@ -52,6 +52,7 @@ const Future = () => {
 
   return (
     <>
+    <div class="container mx-auto px-4">
       <TitleDescriptions title={'Forecast'} description={'Future Estimations based in the workload duration'} />
       <p>Select the workload estimated duration</p>
       <br />
@@ -86,12 +87,12 @@ const Future = () => {
 
       {windowSize > 0 ?
         <div class="container mx-auto">
-          <TableData emissionData={optimalForecast} />
+          <TableData emissionData={optimalForecast} dataType={'future'} />
         </div>
         : <> </>}
 
 
-
+</div>
     </>
   )
 }

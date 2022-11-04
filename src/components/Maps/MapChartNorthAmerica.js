@@ -7,6 +7,7 @@ import {
 } from "react-simple-maps";
 import { scaleLinear } from "d3-scale";
 import sortBy from "lodash/sortBy";
+import { getColor } from "../../utils/Utils";
 
 const geoUrl =
   "https://raw.githubusercontent.com/deldersveld/topojson/master/continents/north-america.json";
@@ -15,19 +16,21 @@ const MapChartNorthAmerica = ({ emissionData }) => {
   const [data, setData] = useState([]);
   const [maxValue, setMaxValue] = useState(0);
   const [emissions, setEmissions] = useState([]);
-  const [rating, setRating] = useState([]);
   const markerOffset = 20;
-
+  const [ratings, setRatings] = useState([]);
+  
   useEffect(() => {
-
-    console.log('useeffects europe');
+    let scores = []
     setEmissions(emissionData);
-    
-    //setRating((rat => [...rat, emissionData.rating]));
-    
+
      const sortedCities = sortBy(emissions, (o) => -o.rating);
      setData(sortedCities);
     
+
+     for (const emi of emissionData) {
+      scores.push(emi.rating)
+      setRatings(scores)
+    }
 
   }, [emissions]);
 
@@ -69,7 +72,7 @@ const MapChartNorthAmerica = ({ emissionData }) => {
       {data.map(({ location, region, regionName, longitude, latitude, rating }) => {
         return (
           <Marker key={region} coordinates={[longitude, latitude]}>
-            <circle fill="#F53" stroke="#FFF" r={popScale(rating)} />
+            <circle fill={getColor(rating, ratings)} stroke="#FFF" r={popScale(rating)} />
             <text
               textAnchor="middle"
               y={markerOffset}

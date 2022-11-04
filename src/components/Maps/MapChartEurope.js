@@ -7,6 +7,7 @@ import {
 } from "react-simple-maps";
 import { scaleLinear } from "d3-scale";
 import sortBy from "lodash/sortBy";
+import { getColor } from "../../utils/Utils";
 
 const geoUrl =
   "https://raw.githubusercontent.com/deldersveld/topojson/master/continents/europe.json";
@@ -15,18 +16,20 @@ const MapChartEurope = ({ emissionData }) => {
   const [data, setData] = useState([]);
   const [maxValue, setMaxValue] = useState(0);
   const [emissions, setEmissions] = useState([]);
-  const [rating, setRating] = useState([]);
+  const [ratings, setRatings] = useState([]);
   const markerOffset = 20;
 
   useEffect(() => {
-
-    console.log('useeffects europe');
+    let scores = []
     setEmissions(emissionData);
-    
-    //setRating((rat => [...rat, emissionData.rating]));
     
      const sortedCities = sortBy(emissions, (o) => -o.rating);
      setData(sortedCities);
+
+     for (const emi of emissionData) {
+      scores.push(emi.rating)
+      setRatings(scores)
+    }
     
 
   }, [emissions]);
@@ -48,7 +51,7 @@ const MapChartEurope = ({ emissionData }) => {
   return (
     <div class="p-4 w-2/3 bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700">
 
-    <h5 class="mb-2 text-2xl font-semibold tracking-tight text-gray-900 dark:text-white">North America Map</h5>
+    <h5 class="mb-2 text-2xl font-semibold tracking-tight text-gray-900 dark:text-white">Europe</h5>
 
 
 
@@ -67,7 +70,7 @@ const MapChartEurope = ({ emissionData }) => {
       {data.map(({ location, region, regionName, longitude, latitude, rating }) => {
         return (
           <Marker key={region} coordinates={[longitude, latitude]}>
-            <circle fill="#F53" stroke="#FFF" r={popScale(rating)} />
+            <circle fill={getColor(rating, ratings)} stroke="#FFF" r={popScale(rating)} />
             <text
               textAnchor="middle"
               y={markerOffset}

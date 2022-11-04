@@ -73,7 +73,7 @@ const Today = () => {
     <>
 
       <div class="container mx-auto px-4">
-        <TitleDescriptions title={'Today'} description={'Ranking of best emission data'} />
+        <TitleDescriptions title={'Today'} description={'Best emission data per region'} />
 
         <div class="grid grid-cols-4 gap-4">
 

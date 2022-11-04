@@ -110,9 +110,7 @@ const TableData = ({ emissionData }) => {
                                         </h4>
                        
                                         <div>
-                                            <TodayChart />
-
-
+                                            <TodayChart regionName={'a'}  />
                                         </div   >
                                         <div className="items-center gap-2 mt-3 sm:flex">
                                             <button

@@ -1,19 +1,30 @@
 import React, { useState, useEffect } from 'react'
-import emissionsService from '../services/emissions.service'
-import regions from "../data/regions.json";
 import sortBy from "lodash/sortBy";
 import { getColor } from "../utils/Utils";
 import TodayChart from './TodayChart';
 
-const TableData = ({ emissionData }) => {
+const TableData = ({ emissionData, type, time1, time2, work }) => {
 
     const [emissions, setEmissions] = useState([]);
     const [emissionsSort, setEmissionsSort] = useState([]);
     const [ratings, setRatings] = useState([]);
     const [showModal, setShowModal] = useState(false);
+    const [dataType, setDataType] = useState('');
+    const [region, setRegion] = useState('');
+    const [startTime, setStartTime] = useState('');
+    const [endTime, setEndTime] = useState('');
+    const [workLoad, setWorkLoad] = useState(0);
+
+
+    
 
     useEffect(() => {
         setEmissions(emissionData)
+        setDataType(type)
+        setStartTime(time1)
+        setEndTime(time2)
+        setWorkLoad(work)
+
         let scores = []
 
         var temp = []
@@ -55,7 +66,7 @@ const TableData = ({ emissionData }) => {
                                 Rating
                             </th>
                             <th scope="col" className="py-3 px-6">
-                                View Graph
+                                Graph
                             </th>
                         </tr>
                     </thead>
@@ -76,14 +87,18 @@ const TableData = ({ emissionData }) => {
                                     <span class="text-white text-sm font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-gray-700 dark:text-gray-300" style={{ backgroundColor: getColor(emi.rating, ratings) }}>{emi.rating.toFixed(2)} </span>
                                 </td>
                                 <td className="py-4 px-6">
+
+                                {dataType =='future' ? 
+                                   
                                 <button
-        className="bg-blue-200 text-black active:bg-blue-500 
-      font-bold px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1"
-        type="button"
-        onClick={() => {setShowModal(true) }}
-      >
-        Fill Details
-      </button>
+                                        className="bg-blue-200 text-black active:bg-blue-500 
+                                    font-bold px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1"
+                                        type="button"
+                                        onClick={() => {setRegion(emi.regionName); setShowModal(true); }}
+                                    >
+                                        View Graph
+                                    </button>
+                                :<></>}
                                 </td>
                             </tr>
                         ))}
@@ -110,7 +125,7 @@ const TableData = ({ emissionData }) => {
                                         </h4>
                        
                                         <div>
-                                            <TodayChart regionName={'a'}  />
+                                            <TodayChart regionName={region} dataType={dataType} time1={time1} time2={time2} workLoad={workLoad}/>
                                         </div   >
                                         <div className="items-center gap-2 mt-3 sm:flex">
                                             <button

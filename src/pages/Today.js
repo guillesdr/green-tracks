@@ -76,9 +76,6 @@ const Today = () => {
         <TitleDescriptions title={'Today'} description={'Best emission data per region'} />
 
         <div class="grid grid-cols-4 gap-4">
-
-
-
           {regions.map((reg) => (
             <div>
               <RegionData reg={reg} emissions={emissions} />

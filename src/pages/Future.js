@@ -10,6 +10,11 @@ const Future = () => {
   const [emissions, setEmissions] = useState([]);
   const [optimalForecast, setOptimalForecast] = useState([]);
   const [windowSize, setWindowSize] = useState(0);
+  const [startTime, setStartTime] = useState('');
+  const [endTime, setEndTime] = useState('');
+  const [type, setType] = useState('future');
+
+
 
   function convertTZ(date, tzString) {
     return new Date((typeof date === "string" ? new Date(date) : date).toLocaleString("en-US", { timeZone: tzString }));
@@ -20,6 +25,9 @@ const Future = () => {
     setOptimalForecast([])
     const time1 = convertTZ(new Date(), "Etc/GMT").toISOString() //new Date().toISOString();
     const time2 = addHours(12, convertTZ(new Date(), "Etc/GMT")).toISOString()
+
+    setStartTime(time1)
+    setEndTime(time2)
 
     regions.forEach(region => {
       emissionsService.getForecastEmissionByLocationAndTime(region.RegionName, time1, time2, windowSize).then((data) => {
@@ -87,7 +95,7 @@ const Future = () => {
 
       {windowSize > 0 ?
         <div class="container mx-auto">
-          <TableData emissionData={optimalForecast} dataType={'future'} />
+          <TableData emissionData={optimalForecast} type={type} time1={startTime} time2={endTime} work={windowSize}/>
         </div>
         : <> </>}
 

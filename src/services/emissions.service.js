@@ -16,7 +16,7 @@ class EmissionsByLocationsDataService {
   };
 
   getEmissionByLocationAndTimeBest = async (region, time1, time2, windowSize) => {
-    return http.get(`/bylocations/best?location=${region}&dataStartAt=${time1}&dataEndAt=${time2}&windowSize=${windowSize}`)
+    return http.get(`/bylocations/best?location=${region}&time=${time1}&toTime=${time2}`)
   };
   
   

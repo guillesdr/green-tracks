@@ -22,6 +22,6 @@
         if (value <= get_percentile(25, array)) { return '#03A678'; }
         if (value <= get_percentile(50, array)) { return '#F29F05'; }           
         if (value <= get_percentile(75, array)) { return '#F2507B'; }           
-        if (value <= get_percentile(100, array)) { return '#F2506E'; } 
+        if (value <= get_percentile(100, array)) { return '#F2507B'; } 
         return '#F2506E'
       }

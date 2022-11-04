@@ -7,6 +7,7 @@ import Menu from './components/Menu';
 import RealTime from './pages/RealTime';
 import Today from './pages/Today';
 import Future from './pages/Future';
+import Footer from './components/Footer';
 
 
 function App() {
@@ -20,7 +21,7 @@ function App() {
             <Route path="/today" element={<Today />} />
             <Route path="/future" element={<Future />} />
         </Routes>
-
+        <Footer/>
       </BrowserRouter>
     </>
 

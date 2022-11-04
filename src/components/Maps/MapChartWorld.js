@@ -8,6 +8,7 @@ import {
 import { scaleLinear } from "d3-scale";
 import sortBy from "lodash/sortBy";
 import { getColor } from "../../utils/Utils";
+import References from "../References";
 
 const geoUrl =
   "https://raw.githubusercontent.com/deldersveld/topojson/master/world-continents.json";
@@ -84,6 +85,7 @@ const MapChartWorld = ({ emissionData }) => {
         </ComposableMap>
       </div>
 
+      <References/>
       <br />
 
 

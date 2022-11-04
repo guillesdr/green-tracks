@@ -35,7 +35,7 @@ const TableData =  ({emissionData}) => {
 
     return (
         <>
-
+            <br></br>
             <div className="overflow-x-auto relative shadow-md sm:rounded-lg">
                 <table className="table-auto">
                     <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">

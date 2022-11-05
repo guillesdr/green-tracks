@@ -38,7 +38,7 @@ const RealTime = () => {
                     
 
                     setEmissions((emis => [...emis, apiData]));
-                    setDataChart((emis => [...emis, {name: apiData.regionName, value: apiData.rating}]));
+                    setDataChart((emis => [...emis, {region: apiData.regionName, emmision: apiData.rating}]));
 
                 }
                 

@@ -17,12 +17,12 @@ const BarChartGt = ({data}) => {
 
         >
           <CartesianGrid strokeDasharray="3 3" />
-          <XAxis dataKey="name">
+          <XAxis dataKey="region">
           </XAxis>
-          <YAxis dataKey="value"/>
+          <YAxis dataKey="emmision"/>
           <Tooltip />
           <Legend />
-          <Bar dataKey="value" fill="#8884d8" />
+          <Bar dataKey="emmision" fill="#025373" />
         </BarChart >
 
       </>

@@ -10,30 +10,16 @@ const Today = () => {
 
   const [emissions, setEmissions] = useState([]);
   const [dataChart, setDataChart] = useState([]);
+  const [startDate, setStartDay] = useState('');
+  const [endDate, setEndDate] = useState('');
+  const [type, setType] = useState('today');
+
+
 
   function convertTZ(date, tzString) {
     return new Date((typeof date === "string" ? new Date(date) : date).toLocaleString("en-US", { timeZone: tzString }));
   }
 
-
-
-  function organizandoObjeto(arr) {
-
-    let memory = {
-      temp: [],
-      result: []
-    }
-
-    arr.map(o => {
-
-      if (!memory.temp.includes(o.regionName)) {
-        memory.temp.push(o.regionName)
-        const tel = emissions.filter(t => t.regionName === o.regionName)
-        memory.result.push({ regionName: o.regionName, emiss: tel })
-      }
-    })
-    return memory.result
-  }
 
 
   useEffect(() => {
@@ -45,6 +31,9 @@ const Today = () => {
 
     const time1 = convertTZ(startOfDay, "Etc/GMT").toISOString() //new Date().toISOString();
     const time2 = convertTZ(new Date(), "Etc/GMT").toISOString()
+
+    setStartDay(time1)
+    setEndDate(time2)
 
     regions.forEach(region => {
       emissionsService.getEmissionByLocationAndTimeBest(region.RegionName, time1, time2).then((data) => {
@@ -78,7 +67,7 @@ const Today = () => {
         <div class="grid grid-cols-4 gap-4">
           {regions.map((reg) => (
             <div>
-              <RegionData reg={reg} emissions={emissions} />
+              <RegionData reg={reg} emissions={emissions} type={type} time1={startDate} time2={endDate}/>
             </div>
           ))}
 

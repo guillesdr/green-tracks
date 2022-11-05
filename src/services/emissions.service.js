@@ -8,7 +8,7 @@ class EmissionsByLocationsDataService {
   };
 
   getEmissionByLocationAndTime = async (region, time1, time2) => {
-    return http.get(`bylocation?location=${region}`)
+    return http.get(`bylocation?location=${region}&time=${time1}&toTime=${time2}`)
   };
 
   getForecastEmissionByLocationAndTime = async (region, time1, time2, windowSize) => {
